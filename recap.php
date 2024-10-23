@@ -11,10 +11,14 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.21.13/dist/css/uikit.min.css" />
+
     <title>Récapitulatif des produits</title>
 </head>
 <body>
-<h2>recap</h2>
+<h1>Récapitulatif des produits</h1>
 
     <?php 
     
@@ -26,8 +30,8 @@ session_start();
 
     } else{
         // Affichera nos produits dans un tableau HTML
-        echo "<table>",
-                "<thead>",
+        echo "<table class='uk-table uk-table-hover' id='recap'>",
+                "<thead id='category'>",
                     "<tr>",
                         "<th>#</th>",
                         "<th>Nom</th>",
@@ -42,26 +46,31 @@ session_start();
 
         foreach($_SESSION['products'] as $index => $product){
 
-            echo "<tr>",
+            echo "<tr id='product_hover'>",
                     "<td>".$index."</td>",
                     "<td>".$product['name']."</td>",
                     //Number_format permet de modifier l'affichage d'une valeur numérique
                     "<td>".number_format($product['price'], 2,",","&nbsp;")."&nbsp;€</td>",
                     "<td>".$product['qtt']."</td>",
                     "<td>".number_format($product['total'], 2,",","&nbsp;")."&nbsp;€</td>",
-                 "</tr>";
+                "</tr>";
             $totalGeneral+= $product['total'];
         }
 
-        echo "<tr>"
+        echo  "<tr id='total_hover'>",
                 "<td colspan=4>Total général : </td>",
                 "<td><strong>".number_format($totalGeneral, 2,",","&nbsp;")."&nbsp;€</strong></td>",
-             "</tr>"
-            "</body>",
-        "</table>";
+              "</tr>" ,
+            "</tbody>",
+        "</table>",
+        "<div id='redirection'><a href='index.php'>Ajouter un produit</a></div>";
     
     }
     
     ?>
+
+
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.21.13/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.21.13/dist/js/uikit-icons.min.js"></script>
 </body>
 </html>

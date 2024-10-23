@@ -1,6 +1,6 @@
 <?php
 
-// Enrgistre les produits en session sur le serveur
+// Enregistre les produits en session sur le serveur
 session_start();
 
 // Condition pour limiter l'accès au fichier traitement.php et que des utilisateurs mal intentionnés de puissent pas l'atteindre 
@@ -43,3 +43,15 @@ if(isset($_POST["submit"])){
 // ("location") envoie un nouvel entête HTTP au client avec le statut code 302 qui indique une redirection
 header("Location:index.php");
 
+// definir: 
+
+/* session =  Démarre une session sur le serveur ou récupère la session de l'utilisateur s'il en avait déja une.
+              Au démarage le serveur enregistre un cookie PHPSESSID dans lenavigateur client, contenant l'identifiant de la session lui appartenant .
+              Le but des sessions n'est pas de conserver les informations indéfiniment mais simplement durant une session, Une session démarre dès que la fonction session_start() est appelée et se termine en général dès que la fenêtre courante du navigateur est fermée.
+              La durée de vie du cookie dépend de la configuration serveur à ce sujet. Par défaut, la session expiera à la fermeture du navigateur.
+ 
+supergables = Ce sont des variables de type tableau qui propose une manière simple d'y regrouper plusieurs informations sous forme de paires"clé/valeur".
+              Ces variables sont disponibles dans nimporte quel script PHP et sont crées automatiquement par le serveur mais peuvent être vide.
+
+teableau associatif = C'est un tableau qui utilise des clé textuelles qu'on associe à chaque valeur. il se présente sous la forme de paires "clé/valeur".
+*/
