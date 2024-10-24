@@ -11,9 +11,9 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <!-- UIkit CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.21.13/dist/css/uikit.min.css" />
+    <link rel="stylesheet" href="style.css">
 
     <title>Récapitulatif des produits</title>
 </head>
@@ -43,6 +43,7 @@ session_start();
                 "<tbody>";
                 
         $totalGeneral = 0;
+        $nbArticle = 0;
 
         foreach($_SESSION['products'] as $index => $product){
 
@@ -54,16 +55,25 @@ session_start();
                     "<td>".$product['qtt']."</td>",
                     "<td>".number_format($product['total'], 2,",","&nbsp;")."&nbsp;€</td>",
                 "</tr>";
+
             $totalGeneral+= $product['total'];
+          
+            $_SESSION['nbArticles'] = $nbArticle+= $product['qtt'];
+            
         }
 
-        echo  "<tr id='total_hover'>",
-                "<td colspan=4>Total général : </td>",
-                "<td><strong>".number_format($totalGeneral, 2,",","&nbsp;")."&nbsp;€</strong></td>",
-              "</tr>" ,
-            "</tbody>",
-        "</table>",
-        "<div id='redirection'><a href='index.php'>Ajouter un produit</a></div>";
+        echo   "</tbody>",
+              "</table>",
+              "<div id='article'>",
+                "<span><strong>Total Articles : </strong></span>",
+                "<span><strong>".number_format($nbArticle, 0,"&nbsp;")."&nbsp;</strong></span>",
+              "</div>",
+              "<div id='total'>",
+                "<span ><strong>Total Prix : </strong></span>",
+                "<span><strong>".number_format($totalGeneral, 2,",","&nbsp;")."&nbsp;€</strong></span>",
+              "</div>",
+              "<div id='redirection'><a href='index.php'>Ajouter un produit</a></div>",
+              "<a href='traitement.php?action=clear'>Clear</a>";
     
     }
     

@@ -69,16 +69,22 @@ body h1{
 
 }
 
-#total_hover {
+#article {
+    
+    width: 100%;
 
-    background-color: rgb(22, 22, 140);
-    color: white;
-    font-size: 1.5em;
 
 }
 
-#total_hover:hover{
+#article span {
 
-    background-color: #f6f6f6;
+    
 
+}
+
+
+#total {
+
+    font-size: 2em;
+    
 }
