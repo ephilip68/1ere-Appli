@@ -1,90 +1,239 @@
+body{
+
+    background-image: url(image/vecteezy_side-view-monochrome-image-of-a-small-luxury-gift-box-with-a_27100457.jpg);
+    background-position: center;
+    background-size: 120%;
+    
+}
+
 body h1{
 
     text-align: center;
     text-decoration: underline;
     text-transform: uppercase;
-    color: rgb(81, 116, 214);
-    padding: 1em 0 2em 0;
+    color: bisque;
+    font-weight: bolder;
+    padding: 1em 0 1.5em 0;
+
+}
+
+.container{
+
+    position: relative;
+    padding: 1.5em 1.5em;
+     
+}
+
+#cantainer-category{
+
+    display: flex;
+    width: 100%;
+    
+}
+
+.element label,
+input{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1em 0;
+   
+}
+
+.element label{
+
+    font-size: 1.5em;
+    font-weight: bolder;
+    color: bisque;
+    width: 50%;
+    
+}
+
+.element input{
+
+   width: 50%;
+   padding: .8em 0;
+   text-align: center;
+   background-color: rgb(245, 238, 229);
+   color: rgba(5, 43, 25, 0.726);
+   font-weight: bold;
+
+}
+
+.btn{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    padding-bottom: 3em;
+    
+
+}
+
+.btn input {
+
+    background-color: bisque;
+    cursor: pointer;
 
 }
 
 #redirection {
 
     width: 100%;
-    text-align: center;
-    padding-top: 2em;
+    position: absolute;
+    top:85px;
+    left: 30px;
 
 }
 
 #redirection a{
 
-    font-size:1.5em;
-    color: rgb(22, 22, 140);
-    border: 1px solid rgb(22, 22, 140);
-    border-radius: 10px;
+    color: bisque;
     padding: .3em .6em;
     width: 10%;
-    text-align: center;
     
 }
-
-#redirection a:hover{
-
-    background-color: rgb(81, 116, 214);
-    color: white;
-    text-decoration: none;
-}
-
 
 #recap {
 
-    background-color: #f6f6f6;
-    
+    width: 50%;
+    margin-left: 2em;
+
 }
 
 #category {
 
-    background-color: rgb(22, 22, 140);
+    border-bottom: 3px solid black;
+ 
+}
+
+.category-title{
+
+    width: 8%;
 
 }
 
-#category th{
+#title th{
+    
+    color: bisque;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    
+}
+
+#product-hover {
 
     color: white;
-    font-size: 2em;
+    font-size: 1.5em;
+    border-bottom: 1px solid black;
+    text-align: center;
+   
+}
+
+#product-hover:hover{
+
+    color: black;
+}
+
+#categoryQtt{
+
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    
 
 }
 
-#product_hover {
+#quantite a {
 
-    color: rgb(22, 22, 140);
+    display: block;
+    
+
+}
+
+.uk-alert-success{
+
+    width: 20%;
+
+}
+
+.icon-arrow{
+
+    color: bisque;
+    
+}
+
+.icon_trash:hover{
+
+    color: white;
+   
+}
+
+.icon{
+
+    color: red;
+    border: 1px solid red;
+    border-radius: 5px;
+    
+}
+
+.icon:hover{
+
+    color: white;
+    background-color: red;
+    
+}
+
+.icon-cart:hover {
+
+    color: white;
+
+}
+
+#total-container{
+
+    display: flex;
+    justify-content: right ;
+    align-items: center;
+    width: 52%;
+    color: bisque;
+     
+}
+
+#article{
+
+    font-size: 1.2em;
+
+}
+
+#total{
+
     font-size: 1.5em;
 
 }
 
-#product_hover:hover{
+.panier {
 
-    background-color: rgb(134, 160, 231);
-    color: white;
-
-}
-
-#article {
-    
-    width: 100%;
-
+    color: bisque;
+    font-size: 1.2em;
+    position: absolute;
+    align-items: center;
+    top: 60px;
+    right: 70px;
 
 }
 
-#article span {
+.total-panier {
 
-    
+    position: absolute;
+    font-size: .8em;
+    font-weight: lighter;
+    top: -9px;
+    right: 2px;
 
 }
 
 
-#total {
-
-    font-size: 2em;
-    
-}

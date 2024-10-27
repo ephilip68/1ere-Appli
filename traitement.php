@@ -3,12 +3,14 @@
 // Enregistre les produits en session sur le serveur
 session_start();
 
+$id = (isset($_GET["id"])) ? $_GET["id"] : null;
 
-
+// Cela vérifiera si un ID a été envoyé grâce à "$_GET" et le stocke dans $id, sinon $id sera null
 if(isset($_GET['action'])){
 
     switch($_GET['action']){
-    case "add":  // Condition pour limiter l'accès au fichier traitement.php et que des utilisateurs mal intentionnés de puissent pas l'atteindre 
+    case "add":  
+        // Condition pour limiter l'accès au fichier traitement.php et que des utilisateurs mal intentionnés de puissent pas l'atteindre 
         //$_POST['submit'] -> Vérifie l'existence de la clé "submit" dans le tableau $_POST
         if(isset($_POST["submit"])){
         
@@ -16,7 +18,7 @@ if(isset($_GET['action'])){
             // FILTER_SANITIZA_STRING supprime une chaîne de caractère de toute présence de caractères spéciaux et balise HTML potentielle ou encodes
             $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         
-            // FILTER_VALIDATE_FLOAT permettra de valider le prix que si il est un nombre à virgule
+            // FILTER_VALIDATE_FLOAT permet de valider le prix que si il est un nombre à virgule
             // Le drapeau FILTER_FLAG_ALLOW_FRACTION permet l'utilisation du caractère "," ou "." pour la décimal
             $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
         
@@ -24,7 +26,7 @@ if(isset($_GET['action'])){
             $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
         
         
-            // Maintenant les valeurs du formulaire validées ou nettoyées, cette nouvelle condition nous permettra de vérifier si tous les filtres ont fonctionés
+            // Maintenant les valeurs du formulaire validées ou nettoyées, cette nouvelle condition nous permet de vérifier si tous les filtres ont fonctionés
             if($name && $price && $qtt){
         
                 // Construction d'un tableau associatif afin d'organiser les données qui permettront d'afficher nos produits plus tard
@@ -38,8 +40,6 @@ if(isset($_GET['action'])){
                     
                 ];
         
-                
-        
                 // Permet de stocker nos données en session en les ajoutant au tableau $_SESSION
                 // [] indique à cette emplacement que nous ajoutons une nouvelle entrée au futur tableau "products" associé à cette clé
                 // $_SESSION["product"] doit être également un tableau pour pouvoir stocker de nouveaux produits
@@ -47,23 +47,33 @@ if(isset($_GET['action'])){
         
                 $_SESSION['msg'] = "Votre produit à été ajouté avec succès";
                     
-        
-        
             }else {
 
-                  $_SESSION['msg'] = "erreur";
+                $_SESSION['msg'] = "erreur";
 
             }
-        
-          
-        
-        
         }
 
-    case "delete": 
+        header("Location:index.php");
+    break;
+    case "delete": unset($_SESSION['products'][$_GET['id']]);
+            $_SESSION['msg'] = "Votre produit à été retiré du panier !";
+        header("Location:recap.php");
+        die;
+    break; 
     case "clear": unset($_SESSION['products']);
-    case "up-qtt": 
-    case "down-qtt":
+            $_SESSION['msg'] = "Votre panier est vide !";
+        header("Location:recap.php");
+        die;
+    break;
+    case "up-qtt": $_SESSION['products'][$_GET['id']]['qtt']++;
+        header("Location:recap.php");
+        die;
+    break;
+    case "down-qtt": $_SESSION['products'][$_GET['id']]['qtt']--;
+        header("Location:recap.php");
+        die;
+    break;
     }
 
 }

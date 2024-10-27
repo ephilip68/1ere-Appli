@@ -21,34 +21,34 @@ session_start();
             <a href class="uk-alert-close" uk-close></a>
             <p><?php echo $_SESSION['msg']?></p>
         </div>
-        <form action="traitement.php?action=add" method="post">
+        <form class="element" action="traitement.php?action=add" method="post">
             <p>
                 <label>
-                    Nom du produit :
+                    Nom du Produit :
                     <input type="text" name="name">
                 </label>
             </p>
             <p>
                 <label>
-                    Prix du produit :
+                    Prix du Produit :
                     <input type="number" step="any" name="price">
                 </label>
             </p>
             <p>
                 <label>
-                    Quantité désirée :
+                    Quantité Désirée :
                     <input type="number" name="qtt" value="1">
                 </label>
             </p>
-            <p>
-                <input type="submit" name="submit" value="Ajouter le produit">
+            <p class="btn">
+                <input  type="submit" name="submit" value="Ajouter au Panier">
             </p>
         </form>
-        <div id='article'>
-            <span><strong>Total Articles : </strong></span>
-            <span><strong><?php echo $_SESSION["nbArticles"]; ?></strong></span>
+        <div class="panier">
+            <span><strong>Mon Panier</strong></span>
+            <span class="total-panier"><strong><?php echo $_SESSION['nbArticles']; ?></strong></span>
+            <a href='recap.php'class='icon-cart' uk-icon='icon:cart'></a> 
         </div>
-        <a href='recap.php'>recapitulatif</a> 
     </body>
 
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.21.13/dist/js/uikit.min.js"></script>
