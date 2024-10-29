@@ -3,6 +3,8 @@
 // Afin de pouvoir récupérer et parcourir le tableau session il est nécessaire d'appeller cette fonction en début de fichier
 session_start();
 
+$message = isset($_SESSION['msg']) ? $_SESSION['msg']:"";
+
 ?>
 
 <!DOCTYPE html>
@@ -14,13 +16,23 @@ session_start();
     <!-- UIkit CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.21.13/dist/css/uikit.min.css" />
     <link rel="stylesheet" href="style.css">
+    <script src="style.js"></script>
 
     <title>Récapitulatif des produits</title>
 </head>
 <body>
     <div class="container">
+
         <h1>Votre Panier</h1>
+
         <div id='redirection'><span class="icon-arrow" uk-icon='icon:arrow-left'></span><a href='index.php'>Ajouter un produit</a></div>
+        
+        <?php if(!empty($message)) ?>
+
+        <div class="uk-alert-success" uk-alert id="message">
+            <a href class="uk-alert-close" uk-close></a>
+            <p><?php echo $message ?></p>
+        </div>
 
     <?php 
     
@@ -59,12 +71,12 @@ session_start();
                     "<a href='traitement.php?action=down-qtt&id=$index' uk-icon='triangle-down'></a></div></td>",
                     "<td>".number_format($product['total'], 2,",","&nbsp;")."&nbsp;€</td>",
                     "<td><a href='traitement.php?action=delete&id=$index' class='icon' uk-icon='icon:close'></a></td>",
-                "</tr>";
+                 "</tr>";
 
             $totalGeneral+= $product['total'];
+
+            $nbArticle+= $product['qtt'];
           
-            $_SESSION['nbArticles'] = $nbArticle+= $product['qtt'];
-            
         }
 
         echo  "</tbody>",

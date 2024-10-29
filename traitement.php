@@ -5,10 +5,13 @@ session_start();
 
 $id = (isset($_GET["id"])) ? $_GET["id"] : null;
 
+
 // Cela vérifiera si un ID a été envoyé grâce à "$_GET" et le stocke dans $id, sinon $id sera null
 if(isset($_GET['action'])){
 
     switch($_GET['action']){
+
+    /************ AJOUTER UN PRODUIT *************/
     case "add":  
         // Condition pour limiter l'accès au fichier traitement.php et que des utilisateurs mal intentionnés de puissent pas l'atteindre 
         //$_POST['submit'] -> Vérifie l'existence de la clé "submit" dans le tableau $_POST
@@ -44,36 +47,98 @@ if(isset($_GET['action'])){
                 // [] indique à cette emplacement que nous ajoutons une nouvelle entrée au futur tableau "products" associé à cette clé
                 // $_SESSION["product"] doit être également un tableau pour pouvoir stocker de nouveaux produits
                 $_SESSION['products'][] = $product;
+
         
                 $_SESSION['msg'] = "Votre produit à été ajouté avec succès";
                     
-            }else {
+            } else {
 
                 $_SESSION['msg'] = "erreur";
 
             }
         }
 
+        // Actualisation de la page
         header("Location:index.php");
+
     break;
-    case "delete": unset($_SESSION['products'][$_GET['id']]);
-            $_SESSION['msg'] = "Votre produit à été retiré du panier !";
+
+    /************ SUPPRIMER UN PRODUIT *************/
+    case "delete":
+
+        // Supprime uniquement le produit sélectionné
+        unset($_SESSION['products'][$_GET['id']]);
+
+        // Une fois le produit supprimé un message est envoyé au client
+        $_SESSION['msg'] = "Votre produit a été retiré du panier !";
+
+        // Actualisation de la page
         header("Location:recap.php");
         die;
+
     break; 
-    case "clear": unset($_SESSION['products']);
-            $_SESSION['msg'] = "Votre panier est vide !";
+
+    /************ VIDER LE PANIER *************/
+    case "clear": 
+
+        // Supprime la totalité des produits contenu dans le tableau
+        unset($_SESSION['products']);
+
+        // Une fois supprimé un message est envoyé au client
+        $_SESSION['msg'] = "Votre panier est vide !";
+
+        // Actualisation de la page
         header("Location:recap.php");
         die;
+
     break;
-    case "up-qtt": $_SESSION['products'][$_GET['id']]['qtt']++;
+
+    /************ AJOUTER QUANTITE *************/
+    case "up-qtt": 
+
+        // La quantité du produit sélectionné est incrémenté 
+        $_SESSION['products'][$_GET['id']]['qtt']++;
+
+        // Grâce à l'incrémentation "++" le total sera multiplié quantité * prix du produit
+        $_SESSION["products"][$id]["total"]=$_SESSION["products"][$id]["qtt"]*$_SESSION["products"][$id]["price"];
+
+        // Une fois ajouté un message est envoyé au client
+        $_SESSION['msg'] = "Votre produit a bien été ajouté !";
+
+        // Actualisation de la page
         header("Location:recap.php");
         die;
+
     break;
-    case "down-qtt": $_SESSION['products'][$_GET['id']]['qtt']--;
+
+    /************ RETIRER QUANTITE ************/
+    case "down-qtt":
+        
+        // Si la quantité du produit est supérieur à 1 
+        if($_SESSION['products'][$_GET['id']]['qtt']>1){
+            
+            // La quantité du produit peut être retirée un par un 
+            $_SESSION['products'][$_GET['id']]['qtt']--;
+            
+            // Le total sera ainsi calculé grâce l'incrémentation négative "--" et s'adaptera à la quantité et au prix du produit
+            $_SESSION["products"][$id]["total"]=$_SESSION["products"][$id]["qtt"]*$_SESSION["products"][$id]["price"];
+
+            // Une fois supprimé un message est envoyé au client
+            $_SESSION['msg'] = "Votre produit a bien été retiré !";
+        
+        // Sinon, supression de larticle si la quantité du produit est inferieur à 1 soit 0   
+        }else {
+
+            unset($_SESSION['products'][$_GET['id']]); 
+
+        }
+
+        // Actualisation de la page 
         header("Location:recap.php");
         die;
+
     break;
+
     }
 
 }
