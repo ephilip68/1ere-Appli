@@ -1,3 +1,5 @@
+/***************************** BODY ****************************/
+
 body{
 
     background-image: url(image/vecteezy_side-view-monochrome-image-of-a-small-luxury-gift-box-with-a_27100457.jpg);
@@ -18,6 +20,7 @@ body h1{
 
 }
 
+/***************************** CONTAINER ****************************/
 .container{
 
     position: relative;
@@ -32,77 +35,17 @@ body h1{
     
 }
 
-.element label,
-input{
+/************************************************* MON PANIER **********************************************************/
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 1em 0;
-   
-}
-
-.element label{
-
-    font-size: 1.5em;
-    font-weight: bolder;
-    color: bisque;
-    width: 50%;
-    
-}
-
-.element input{
-
-   width: 50%;
-   padding: .8em 0;
-   text-align: center;
-   background-color: rgb(245, 238, 229);
-   color: rgba(5, 43, 25, 0.726);
-   font-weight: bold;
-
-}
-
-.btn{
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 50%;
-    padding-bottom: 3em;
-    
-
-}
-
-.btn input {
-
-    background-color: bisque;
-    cursor: pointer;
-
-}
-
-#redirection {
-
-    width: 100%;
-    position: absolute;
-    top:85px;
-    left: 30px;
-
-}
-
-#redirection a{
-
-    color: bisque;
-    padding: .3em .6em;
-    width: 10%;
-    
-}
-
+/********** Table **********/
 #recap {
 
     width: 50%;
     margin-left: 2em;
 
 }
+
+/********** Thead **********/
 
 #category {
 
@@ -116,6 +59,7 @@ input{
 
 }
 
+/********** Tr **********/
 #title th{
     
     color: bisque;
@@ -124,6 +68,8 @@ input{
     text-align: center;
     
 }
+
+/********** Products **********/
 
 #product-hover {
 
@@ -153,6 +99,7 @@ input{
 
 }
 
+/********** Icon **********/
 .uk-alert-success{
 
     width: 15%;
@@ -198,11 +145,8 @@ input{
     
 }
 
-.icon-cart:hover {
 
-    color: white;
-
-}
+/********** Total **********/
 
 #total-container{
 
@@ -214,17 +158,21 @@ input{
      
 }
 
+/********** Total Nombre Article **********/
+#total{
+
+    font-size: 1.5em;
+
+}
+
 #article{
 
     font-size: 1.2em;
 
 }
 
-#total{
 
-    font-size: 1.5em;
-
-}
+/****************************************************** INDEX ************************************************************/
 
 .panier {
 
@@ -247,5 +195,78 @@ input{
 
 }
 
+.icon-cart:hover {
 
+    color: white;
+
+}
+
+/***************************** FORMULAIRE ****************************/
+/************ Input ***********/
+.element label,
+input{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1em 0;
+   
+}
+
+.element label{
+
+    font-size: 1.5em;
+    font-weight: bolder;
+    color: bisque;
+    width: 50%;
+    
+}
+
+.element input{
+
+   width: 50%;
+   padding: .8em 0;
+   text-align: center;
+   background-color: rgb(245, 238, 229);
+   color: rgba(5, 43, 25, 0.726);
+   font-weight: bold;
+
+}
+
+/************ Button ***********/
+.btn{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    padding-bottom: 3em;
+    
+
+}
+
+.btn input {
+
+    background-color: bisque;
+    cursor: pointer;
+
+}
+
+/************* Redirection *************/
+#redirection {
+
+    width: 100%;
+    position: absolute;
+    top:85px;
+    left: 30px;
+
+}
+
+#redirection a{
+
+    color: bisque;
+    padding: .3em .6em;
+    width: 10%;
+    
+}
 
